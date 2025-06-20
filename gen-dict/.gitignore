@@ -8,6 +8,3 @@ wheels/
 
 # Virtual environments
 .venv
-
-# 巨大すぎるファイル
-src/**/*.csv
