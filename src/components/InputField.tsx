@@ -8,13 +8,13 @@ interface Props {
     onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
     kana: string;
     letters: string[];
-    indexesList: number[][];
+    wordList: number[][];
 }
 
-const InputField: React.FC<Props> = ({ onChange, onKeyDown, kana, letters, indexesList }) => {
-    const value = indexesList.length === 0
+const InputField: React.FC<Props> = ({ onChange, onKeyDown, kana, letters, wordList }) => {
+    const value = wordList.length === 0
         ? ''
-        : indexes2kana(indexesList[indexesList.length - 1], letters);
+        : indexes2kana(wordList[wordList.length - 1], letters);
 
     return (
         <div>
