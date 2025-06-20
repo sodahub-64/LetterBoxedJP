@@ -1,0 +1,13 @@
+[project]
+name = "gen-dict"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ipadic>=1.0.0",
+    "kanjiconv>=0.2.4",
+    "mecab-python3>=1.0.10",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.0",
+]
