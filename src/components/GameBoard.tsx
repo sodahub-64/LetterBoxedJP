@@ -68,7 +68,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
     ]
 
 
-    return (
+    return <>
         <div style={{ width: '100%' }}>
             <h1>Letter Boxed JP</h1>
             <Button variant="outlined">あそびかた</Button>
@@ -197,7 +197,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                 {(isLoading) ? "Loading..." : "Ready to play!"}
             </span>
         </div >
-    );
+    </>;
 };
 
 export default GameBoard;
