@@ -1,7 +1,7 @@
 import React from 'react';
 import { type ChangeEvent, type KeyboardEvent } from 'react';
 import { indexes2kana } from '../logic/kanaUtils';
-import { baseInputStyle, BLACK } from '../constants/constants';
+import { baseInputStyle, FOREGROUND_COLOR } from '../constants/constants';
 
 interface Props {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -28,7 +28,7 @@ const InputField: React.FC<Props> = ({ onChange, onKeyDown, kana, letters, wordL
                 autoComplete="off"
                 style={{
                     ...baseInputStyle,
-                    color: BLACK,
+                    color: FOREGROUND_COLOR,
                     backgroundColor: 'transparent',
                     outline: 'none',
                     border: 'none',

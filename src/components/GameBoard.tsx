@@ -7,7 +7,7 @@ import { useGameLogic } from '../hooks/useGameLogic';
 import { EMPTY_CHAR } from '../constants/constants';
 
 
-import { BLACK, PINK } from '../constants/constants';
+import { PINK, FOREGROUND_COLOR, BACKGROUND_COLOR } from '../constants/constants';
 function range(from: number, to: number): number[] {
     return ([...Array(to - from)].map((_, i) => (from + i)));
 }
@@ -86,9 +86,9 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                     y={-HALF}
                     width={SIZE}
                     height={SIZE}
-                    stroke={BLACK}
+                    stroke={FOREGROUND_COLOR}
                     strokeWidth={STROKE_WIDTH}
-                    fill="white"
+                    fill={BACKGROUND_COLOR}
                 />
                 {wordList.map((indexes, j) => (indexes.length == 0) ? <div key={j}></div> :
                     range(0, indexes.length - 1).map(i => {
@@ -97,7 +97,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                         return <g key={i} >
                             <line
                                 fill="none"
-                                stroke={(j == wordList.length - 1) ? PINK : BLACK}
+                                stroke={(j == wordList.length - 1) ? PINK : FOREGROUND_COLOR}
                                 strokeDasharray={(j == wordList.length - 1) ? 3 : 0}
                                 opacity={1}
                                 strokeWidth={STROKE_WIDTH * ((j == wordList.length - 1) ? 1 : 0.7)}
@@ -113,14 +113,13 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                 {range(0, 12).map((i) => {
                     const [x, y] = points[i].map(relativeToAbsolute)
                     const [dx, dy] = labels[i]
-                    const color = wordList.slice(0, -1).flat().includes(i) ? BLACK : BLACK
                     return <g key={i}>
                         <circle
                             cx={x}
                             cy={y}
                             r={POINT_RADIUS}
-                            fill="white"
-                            stroke={color}
+                            fill={BACKGROUND_COLOR}
+                            stroke={FOREGROUND_COLOR}
                             strokeWidth={STROKE_WIDTH}
                         />
                         <text
@@ -131,7 +130,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                             textAnchor="middle"
                             alignmentBaseline="middle"
                             dominantBaseline="middle"
-                            fill={color}
+                            fill={FOREGROUND_COLOR}
                         >
                             {letters[i]}
                         </text>
@@ -146,7 +145,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                                 cx={x1}
                                 cy={y1}
                                 r={POINT_RADIUS * 0.5}
-                                fill={(j == wordList.length - 1) ? PINK : BLACK}
+                                fill={(j == wordList.length - 1) ? PINK : FOREGROUND_COLOR}
                                 stroke="none"
                                 strokeWidth={STROKE_WIDTH}
                             />
