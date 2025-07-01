@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Divider, type SxProps, type Theme } from '@mui/material';
+import { Divider, type SxProps, type Theme } from '@mui/material';
 import Spacer from './Spacer';
 import InputField from './InputField';
 import ModalResult from './ModalResult';
@@ -19,7 +19,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
         result,
         open,
         kana,
-        indexesList,
+        wordList,
         henkanList,
         onChange,
         onKeyDown,
@@ -71,7 +71,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
     return <>
         <div style={{ width: '100%' }}>
             <h1>Letter Boxed JP</h1>
-            <Button variant="outlined">あそびかた</Button>
+            {/* <Button variant="outlined">あそびかた</Button> */}
             <Spacer size={10} />
 
             <svg
@@ -90,17 +90,17 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                     strokeWidth={STROKE_WIDTH}
                     fill="white"
                 />
-                {indexesList.map((indexes, j) => (indexes.length == 0) ? <div key={j}></div> :
+                {wordList.map((indexes, j) => (indexes.length == 0) ? <div key={j}></div> :
                     range(0, indexes.length - 1).map(i => {
                         const [x1, y1] = points[indexes[i]].map(relativeToAbsolute)
                         const [x2, y2] = points[indexes[i + 1]].map(relativeToAbsolute)
                         return <g key={i} >
                             <line
                                 fill="none"
-                                stroke={(j == indexesList.length - 1) ? PINK : BLACK}
-                                strokeDasharray={(j == indexesList.length - 1) ? 3 : 0}
+                                stroke={(j == wordList.length - 1) ? PINK : BLACK}
+                                strokeDasharray={(j == wordList.length - 1) ? 3 : 0}
                                 opacity={1}
-                                strokeWidth={STROKE_WIDTH * ((j == indexesList.length - 1) ? 1 : 0.7)}
+                                strokeWidth={STROKE_WIDTH * ((j == wordList.length - 1) ? 1 : 0.7)}
                                 x1={x1}
                                 y1={y1}
                                 x2={x2}
@@ -113,7 +113,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                 {range(0, 12).map((i) => {
                     const [x, y] = points[i].map(relativeToAbsolute)
                     const [dx, dy] = labels[i]
-                    const color = indexesList.slice(0, -1).flat().includes(i) ? BLACK : BLACK
+                    const color = wordList.slice(0, -1).flat().includes(i) ? BLACK : BLACK
                     return <g key={i}>
                         <circle
                             cx={x}
@@ -138,7 +138,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                     </g>
                 })}
 
-                {indexesList.map((indexes, j) =>
+                {wordList.map((indexes, j) =>
                     range(0, indexes.length).map(i => {
                         const [x1, y1] = points[indexes[i]].map(relativeToAbsolute)
                         return <g key={i} >
@@ -146,7 +146,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                                 cx={x1}
                                 cy={y1}
                                 r={POINT_RADIUS * 0.5}
-                                fill={(j == indexesList.length - 1) ? PINK : BLACK}
+                                fill={(j == wordList.length - 1) ? PINK : BLACK}
                                 stroke="none"
                                 strokeWidth={STROKE_WIDTH}
                             />
@@ -160,7 +160,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                 onChange={onChange}
                 onKeyDown={onKeyDown}
                 letters={letters}
-                indexesList={indexesList}
+                wordList={wordList}
             />
 
             <Spacer size={20} />
@@ -175,7 +175,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
                 {range(0, henkanList.length).map((i) => (
                     <span key={i}>
                         <ruby style={{ fontSize: '1.4em' }}>
-                            {indexes2kana(indexesList[i], letters)}
+                            {indexes2kana(wordList[i], letters)}
                             <rt style={{ fontSize: '0.6em' }}>{henkanList[i]}</rt>
                         </ruby>
                         <span> ➡︎ </span>
@@ -186,7 +186,7 @@ const GameBoard: React.FC<{ sx?: SxProps<Theme> }> = () => {
             <ModalResult
                 open={open}
                 onClose={() => setOpen(false)}
-                words={indexesList}
+                words={wordList}
                 indexes2kana={indexes2kana}
                 letters={letters}
             />
