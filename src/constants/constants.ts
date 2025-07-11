@@ -3,7 +3,7 @@ export const IS_DARK = window.matchMedia('(prefers-color-scheme: dark)').matches
 export const EMPTY_CHAR = "\u00A0";
 // export const BLACK = "rgb(33,53,71)";
 export const BLACK = "rgb(36,36,36)";
-export const WHITE = "rgb(227,227,227)";
+export const WHITE = "rgb(255,255,255)";
 export const PINK = "rgb(255, 94, 102)";
 export const ngColor = "rgb(193, 0, 0)";
 
